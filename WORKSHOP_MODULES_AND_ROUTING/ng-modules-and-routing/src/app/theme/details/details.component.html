@@ -1,0 +1,68 @@
+<div class="welcome" *ngIf="!isLogged">
+    <h3>Welcome!</h3>
+    <p>SoftUni forum is a place, where you can post your questions, comment, and discuss problems, which
+        you have in your programming language or in your study in SoftUni.</p>
+    <div class="logged">
+        <ul>
+            <li>
+                <a routerLink="/user/login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </a>
+            </li>
+            <li>
+                <a routerLink="/user/register">
+                    <i class="fas fa-user-plus"></i>
+                    Register
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="theme-content">
+    <!-- theme-title  -->
+    <div class="theme-title">
+        <div class="theme-name-wrapper">
+            <div class="theme-name">
+                <h2>{{theme.themeName}}</h2>
+                <p>Date: <time>{{theme.created_at}}</time></p>
+            </div>
+            <div class="subscribers">
+                <p>Subscribers: <span>{{theme.subscribers.length}}</span></p>
+                <!-- <button class="subscribe">Subscribe</button>
+                <button class="unsubscribe">Unsubscribe</button> -->
+            </div>
+        </div>
+    </div>
+    <!-- comment  -->
+    <div class="comment" *ngFor="let comment of theme.posts">
+        <header class="header">
+            <p><span>{{comment.userId.username}}</span> posted on <time>{{comment.created_at}}</time></p>
+        </header>
+        <div class="comment-main">
+            <div class="userdetails">
+                <img src="../../../assets/profile.png" alt="avatar">
+            </div>
+            <div class="post-content">
+                <p>{{comment.text}}</p>
+                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure facere sint dolorem quam,
+                    accusantium ipsa veniam laudantium inventore aut, tenetur quibusdam doloribus. Incidunt odio
+                    nostrum facilis ipsum dolorem deserunt illum?</p> -->
+            </div>
+        </div>
+        <div class="footer">
+            <i class="fas fa-thumbs-up" *ngIf="isLogged"></i>
+            <!-- <i class="fas fa-thumbs-down"></i> -->
+            <p><span>5</span> likes</p>
+        </div>
+    </div>
+    <div class="answer-comment" *ngIf="isLogged">
+        <p><span>currentUser</span> comment:</p>
+        <div class="answer">
+            <form>
+                <textarea name="postText" id="comment" cols="30" rows="10"></textarea>
+                <button>Post</button>
+            </form>
+        </div>
+    </div>
